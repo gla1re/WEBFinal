@@ -1,4 +1,3 @@
-/* SmartBank shared styles */
 :root{--navy:#142B4A;--blue:#247BEB;--teal:#26C6B5;--bg:#F5F7FA;--card:#fff;--text:#142B4A;--muted:#5d6b82;--line:#e3e8ef;--shadow:0 6px 24px rgba(20,43,74,.08);--r:16px}
 [data-theme=dark]{--bg:#0f1724;--card:#182233;--text:#e8edf5;--muted:#9aa8bf;--line:#2a374d;--shadow:0 6px 24px rgba(0,0,0,.4)}
 *{box-sizing:border-box;margin:0}
