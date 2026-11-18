@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="tools"><button id="themeBtn" class="icon-btn" aria-label="Toggle light/dark theme"></button><button id="burger" class="icon-btn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button></div></div></header>`);
   document.body.insertAdjacentHTML('beforeend', `<footer><div class="wrap"><div class="fgrid"><div><div class="logo"><i class="fa-solid fa-shield-halved"></i> Jew<b>Bank</b></div><p>Your Digital Banking Experience.</p></div>
   <div><b>Navigate</b>${pages.map(([href, title]) => `<a href="${href}">${title}</a>`).join('')}</div>
-  <div><b>Contact (fictional)</b><p><i class="fa-solid fa-location-dot"></i> Astana, Demo Street 1<br><i class="fa-solid fa-phone"></i> +7 700 000 00 00<br><i class="fa-solid fa-envelope"></i> hello@jewbank.example</p></div></div>
+  <div><b>Contacts</b><p><i class="fa-solid fa-location-dot"></i> Astana, Aleksandr Pushkin 8<br><i class="fa-solid fa-phone"></i> +7 707 995 53 98<br><i class="fa-solid fa-envelope"></i> bigyahu@jewbank.example</p></div></div>
   <p class="fine">Demo project which will make US richer</p></div></footer>`);
   const themeButton = $('#themeBtn');
   const updateThemeIcon = () => {
