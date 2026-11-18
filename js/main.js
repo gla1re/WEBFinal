@@ -108,10 +108,11 @@ function countUp(element, target, format = formatCurrency) {
   step(startTime);
 }
 const PRODUCTS = [
-  { id: 'debit', name: 'SmartBank Debit', cls: 'v-blue', type: 'Debit card', fee: 'Issue: free · Service: 0 ₸/month', perks: ['1% cashback on groceries (example)', 'Free ATM withdrawals up to 500 000 ₸/month', 'Apple Pay and Google Pay support'], d: 'Your everyday card for shops, transport and online payments.' },
-  { id: 'virtual', name: 'SmartBank Virtual', cls: 'v-teal', type: 'Virtual card', fee: 'Issue: free · Service: 0 ₸/month', perks: ['Created instantly in the app', 'Separate card number for online shopping', 'Freeze and unfreeze in one tap'], d: 'A digital-only card that keeps your main card number private.' },
-  { id: 'premium', name: 'SmartBank Premium', cls: 'v-gold', type: 'Premium card', fee: 'Service: 2 500 ₸/month (waived above 500 000 ₸ balance)', perks: ['3% cashback on travel (example)', 'Airport lounge access, 2 visits/month', 'Priority support'], d: 'For frequent travellers who want more back from every purchase.' },
-  { id: 'savings', name: 'SmartBank Savings', cls: 'v-green', type: 'Savings account', fee: 'Opening and service: free', perks: ['Example rate: 14% per year', 'Monthly interest capitalization', 'Top up and withdraw any time'], d: 'Set money aside and watch it grow. Rates shown are examples only.' }];
+  { id: 'debit', name: 'Jew Bronze', cls: 'v-blue', type: 'Debit card', fee: 'Issue: 2 000 ₸ · Service: 1 500 ₸/month', perks: ['0.1% cashback on purchases', 'ATM withdrawal fee: 2%', 'Apple Pay and Google Pay support'], d: 'A basic card with very basic rewards.' },
+  { id: 'virtual', name: 'Jew Silver', cls: 'v-teal', type: 'Debit card', fee: 'Issue: 5 000 ₸ · Service: 3 000 ₸/month', perks: ['0.2% cashback on purchases', 'ATM withdrawal fee: 1.5%', 'Online payments and card controls'], d: 'A little more cashback, a little more in fees.' },
+  { id: 'premium', name: 'Jew Gold', cls: 'v-gold', type: 'Premium card', fee: 'Issue: 15 000 ₸ · Service: 10 000 ₸/month', perks: ['0.5% cashback on purchases', 'ATM withdrawal fee: 1%', 'Priority support'], d: 'Premium service with a premium price tag.' },
+  { id: 'savings', name: 'JewBank Savings', cls: 'v-green', type: 'Savings account', fee: 'Opening: free · Service: 500 ₸/month', perks: ['Example rate: 3% per year', 'Monthly interest capitalization', 'Top up and withdraw any time'], d: 'Your savings grow slowly. Our fees arrive on time.' },
+  { id: 'loan', name: 'JewBank Loan', cls: 'v-blue', type: 'Personal loan', fee: 'Example interest rate: 50% per year', perks: ['Loan amounts from 100 000 ₸', 'Terms from 6 to 36 months', 'Approval is not guaranteed'], d: 'Borrow today, pay plenty of interest tomorrow.' }];
 function openApply(product) {
   const modal = showModal('Apply: ' + product.name, `<p class="muted">Demo form. No real application is sent.</p><form id="apF" novalidate>
  <label>Full name<input id="ap_name" autocomplete="name"><small class="err" data-for="ap_name"></small></label>
@@ -136,7 +137,7 @@ function openApply(product) {
 function initProducts() {
   const container = $('#products');
   if (!container) return;
-  container.innerHTML = PRODUCTS.map(product => `<article class="card hov reveal"><div class="vcard ${product.cls}"><div><b>SmartBank</b><br><small>${product.type}</small></div><div class="num">•••• 4821</div></div>
+  container.innerHTML = PRODUCTS.map(product => `<article class="card hov reveal"><div class="vcard ${product.cls}"><div><b>JewBank</b><br><small>${product.type}</small></div><div class="num">•••• 4821</div></div>
   <h3>${product.name}</h3><p class="muted">${product.d}</p><p><small><b>Fees:</b> ${product.fee}</small></p><ul class="ticks">${product.perks.map(perk => `<li>${perk}</li>`).join('')}</ul>
   <div class="row"><button class="btn btn-ghost btn-sm" data-more="${product.id}">Learn more</button><button class="btn btn-primary btn-sm" data-apply="${product.id}">Apply now</button></div></article>`).join('');
   container.addEventListener('click', event => {
@@ -162,12 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentPage = location.pathname.split('/').pop() || 'index.html';
   const currentUser = Auth.current();
   const pages = [['index.html', 'Home'], ['deposits.html', 'Deposits'], ['cards.html', 'Cards'], ['payments.html', 'Payments'], currentUser ? ['profile.html', 'Profile'] : ['auth.html', 'Log in']];
-  document.body.insertAdjacentHTML('afterbegin', `<header class="site-header"><div class="wrap bar"><a class="logo" href="index.html"><i class="fa-solid fa-shield-halved"></i> Smart<b>Bank</b></a>
+  document.body.insertAdjacentHTML('afterbegin', `<header class="site-header"><div class="wrap bar"><a class="logo" href="index.html"><i class="fa-solid fa-shield-halved"></i> Jew<b>Bank</b></a>
   <nav id="nav" aria-label="Main">${pages.map(([href, title]) => `<a href="${href}" class="${href === currentPage ? 'act' : ''}">${title}</a>`).join('')}</nav>
   <div class="tools"><button id="themeBtn" class="icon-btn" aria-label="Toggle light/dark theme"></button><button id="burger" class="icon-btn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button></div></div></header>`);
-  document.body.insertAdjacentHTML('beforeend', `<footer><div class="wrap"><div class="fgrid"><div><div class="logo"><i class="fa-solid fa-shield-halved"></i> Smart<b>Bank</b></div><p>Your Digital Banking Experience.</p></div>
+  document.body.insertAdjacentHTML('beforeend', `<footer><div class="wrap"><div class="fgrid"><div><div class="logo"><i class="fa-solid fa-shield-halved"></i> Jew<b>Bank</b></div><p>Your Digital Banking Experience.</p></div>
   <div><b>Navigate</b>${pages.map(([href, title]) => `<a href="${href}">${title}</a>`).join('')}</div>
-  <div><b>Contact (fictional)</b><p><i class="fa-solid fa-location-dot"></i> Astana, Demo Street 1<br><i class="fa-solid fa-phone"></i> +7 700 000 00 00<br><i class="fa-solid fa-envelope"></i> hello@smartbank.example</p></div></div>
+  <div><b>Contact (fictional)</b><p><i class="fa-solid fa-location-dot"></i> Astana, Demo Street 1<br><i class="fa-solid fa-phone"></i> +7 700 000 00 00<br><i class="fa-solid fa-envelope"></i> hello@jewbank.example</p></div></div>
   <p class="fine">Demo university project. Not a real bank. No real transactions or credentials. Original design inspired by modern fintech usability.</p></div></footer>`);
   const themeButton = $('#themeBtn');
   const updateThemeIcon = () => {

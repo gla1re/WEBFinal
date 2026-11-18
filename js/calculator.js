@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     calculatorForm.addEventListener('input', render);
     $('#resetBtn').onclick = () => {
-        [['amount', 1000000], ['rate', 14], ['term', 12], ['topup', 50000]].forEach(([inputId, defaultValue]) => {
+        [['amount', 1000000], ['rate', 3], ['term', 12], ['topup', 50000]].forEach(([inputId, defaultValue]) => {
             $('#' + inputId).value = defaultValue;
             setErr(inputId, '');
         });
