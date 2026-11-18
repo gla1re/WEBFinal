@@ -111,7 +111,7 @@ const PRODUCTS = [
   { id: 'debit', name: 'Jew Bronze', cls: 'v-blue', type: 'Debit card', fee: 'Issue: 2 000 ₸ · Service: 1 500 ₸/month', perks: ['0.1% cashback on purchases', 'ATM withdrawal fee: 2%', 'Apple Pay and Google Pay support'], d: 'A basic card with very basic rewards.' },
   { id: 'virtual', name: 'Jew Silver', cls: 'v-teal', type: 'Debit card', fee: 'Issue: 5 000 ₸ · Service: 3 000 ₸/month', perks: ['0.2% cashback on purchases', 'ATM withdrawal fee: 1.5%', 'Online payments and card controls'], d: 'A little more cashback, a little more in fees.' },
   { id: 'premium', name: 'Jew Gold', cls: 'v-gold', type: 'Premium card', fee: 'Issue: 15 000 ₸ · Service: 10 000 ₸/month', perks: ['0.5% cashback on purchases', 'ATM withdrawal fee: 1%', 'Priority support'], d: 'Premium service with a premium price tag.' },
-  { id: 'savings', name: 'JewBank Savings', cls: 'v-green', type: 'Savings account', fee: 'Opening: free · Service: 500 ₸/month', perks: ['Example rate: 3% per year', 'Monthly interest capitalization', 'Top up and withdraw any time'], d: 'Your savings grow slowly. Our fees arrive on time.' },
+  { id: 'savings', name: 'JewBank Savings', cls: 'v-green', type: 'Savings account', fee: 'Opening: free · Service: 500 ₸/month', perks: ['Rate: 3% per year', 'Monthly interest capitalization', 'Top up and withdraw any time'], d: 'Your savings grow slowly. Our fees arrive on time.' },
   { id: 'loan', name: 'JewBank Loan', cls: 'v-blue', type: 'Personal loan', fee: 'Example interest rate: 50% per year', perks: ['Loan amounts from 100 000 ₸', 'Terms from 6 to 36 months', 'Approval is not guaranteed'], d: 'Borrow today, pay plenty of interest tomorrow.' }];
 function openApply(product) {
   const modal = showModal('Apply: ' + product.name, `<p class="muted">Demo form. No real application is sent.</p><form id="apF" novalidate>
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.insertAdjacentHTML('beforeend', `<footer><div class="wrap"><div class="fgrid"><div><div class="logo"><i class="fa-solid fa-shield-halved"></i> Jew<b>Bank</b></div><p>Your Digital Banking Experience.</p></div>
   <div><b>Navigate</b>${pages.map(([href, title]) => `<a href="${href}">${title}</a>`).join('')}</div>
   <div><b>Contact (fictional)</b><p><i class="fa-solid fa-location-dot"></i> Astana, Demo Street 1<br><i class="fa-solid fa-phone"></i> +7 700 000 00 00<br><i class="fa-solid fa-envelope"></i> hello@jewbank.example</p></div></div>
-  <p class="fine">Demo university project. Not a real bank. No real transactions or credentials. Original design inspired by modern fintech usability.</p></div></footer>`);
+  <p class="fine">Demo project which will make US richer</p></div></footer>`);
   const themeButton = $('#themeBtn');
   const updateThemeIcon = () => {
     themeButton.innerHTML = `<i class="fa-solid fa-${document.documentElement.dataset.theme === 'dark' ? 'sun' : 'moon'}"></i>`;
