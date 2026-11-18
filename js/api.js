@@ -1,19 +1,66 @@
-/* Exchange rates from open.er-api.com (informational; never invented) */
-let RATES=null;
-async function loadRates(){const box=$('#ratesBox');box.innerHTML='<span class="spin"></span> Loading rates…';
- try{const r=await fetch('https://open.er-api.com/v6/latest/USD');if(!r.ok)throw new Error('HTTP '+r.status);
-  const d=await r.json();if(d.result!=='success'||!d.rates||!d.rates.KZT)throw new Error('Bad data');RATES=d.rates;
-  const k=RATES.KZT,row=(l,v)=>v?`<tr><td>${l}</td><td><b>${v.toFixed(2)} ₸</b></td></tr>`:'';
-  box.innerHTML=`<h3>Rates to tenge</h3><table>${row('1 USD',k)}${row('1 EUR',RATES.EUR&&k/RATES.EUR)}${row('1 RUB',RATES.RUB&&k/RATES.RUB)}</table><p class="muted" style="font-size:.8rem;margin-top:12px">Last updated: ${esc(d.time_last_update_utc||'unknown')}. Informational only.</p>`;
-  const cur=['KZT','USD','EUR','RUB','GBP','CNY'].filter(c=>RATES[c]);
-  ['c_from','c_to'].forEach((id,i)=>{$('#'+id).innerHTML=cur.map(c=>`<option>${c}</option>`).join('');$('#'+id).value=i?'KZT':'USD'});convert()}
- catch(err){RATES=null;box.innerHTML='<div class="alert bad">Exchange rates are unavailable right now. Check your connection and try again.</div><button class="btn btn-ghost btn-sm" id="retry" type="button">Retry</button>';$('#retry').onclick=loadRates;$('#c_out').textContent='–'}}
-/* Convert via USD base: amount * rate[to] / rate[from] */
-function convert(){const out=$('#c_out');if(!RATES){out.textContent='–';return}
- const raw=$('#c_amt').value.replace(/\s/g,'').replace(',','.');
- if(!raw){setErr('c_amt','Enter an amount');out.textContent='–';return}
- if(!/^\d+(\.\d+)?$/.test(raw)){setErr('c_amt','Enter a valid number');out.textContent='–';return}
- setErr('c_amt','');const f=$('#c_from').value,t=$('#c_to').value,v=parseFloat(raw)*RATES[t]/RATES[f];
- out.textContent=`${new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(v)} ${t}`}
-document.addEventListener('DOMContentLoaded',()=>{if(!$('#ratesBox'))return;$('#convForm').addEventListener('submit',e=>{e.preventDefault();convert()});
- $('#convForm').addEventListener('input',convert);loadRates()});
+let exchangeRates = null;
+
+async function loadRates() {
+    const ratesBox = $('#ratesBox');
+    ratesBox.innerHTML = '<span class="spin"></span> Loading rates…';
+    try {
+        const response = await fetch('https://open.er-api.com/v6/latest/USD');
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+
+        const data = await response.json();
+        if (data.result !== 'success' || !data.rates || !data.rates.KZT) throw new Error('Bad data');
+        exchangeRates = data.rates;
+
+        const tengeRate = exchangeRates.KZT;
+        const row = (label, value) => value
+            ? `<tr><td>${label}</td><td><b>${value.toFixed(2)} ₸</b></td></tr>`
+            : '';
+        ratesBox.innerHTML = `<h3>Rates to tenge</h3><table>${row('1 USD', tengeRate)}${row('1 EUR', exchangeRates.EUR && tengeRate / exchangeRates.EUR)}${row('1 RUB', exchangeRates.RUB && tengeRate / exchangeRates.RUB)}</table><p class="muted" style="font-size:.8rem;margin-top:12px">Last updated: ${escapeHtml(data.time_last_update_utc || 'unknown')}. Informational only.</p>`;
+        const currencies = ['KZT', 'USD', 'EUR', 'RUB', 'GBP', 'CNY'].filter(currency => exchangeRates[currency]);
+        ['c_from', 'c_to'].forEach((inputId, index) => {
+            $('#' + inputId).innerHTML = currencies.map(currency => `<option>${currency}</option>`).join('');
+            $('#' + inputId).value = index ? 'KZT' : 'USD';
+        });
+        convert();
+    } catch (error) {
+        exchangeRates = null;
+        ratesBox.innerHTML = '<div class="alert bad">Exchange rates are unavailable right now. Check your connection and try again.</div><button class="btn btn-ghost btn-sm" id="retry" type="button">Retry</button>';
+        $('#retry').onclick = loadRates;
+        $('#c_out').textContent = '–';
+    }
+}
+
+function convert() {
+    const output = $('#c_out');
+    if (!exchangeRates) {
+        output.textContent = '–';
+        return;
+    }
+    const input = $('#c_amt').value.replace(/\s/g, '').replace(',', '.');
+    if (!input) {
+        setErr('c_amt', 'Enter an amount');
+        output.textContent = '–';
+        return;
+    }
+    if (!/^\d+(\.\d+)?$/.test(input)) {
+        setErr('c_amt', 'Enter a valid number');
+        output.textContent = '–';
+        return;
+    }
+
+    setErr('c_amt', '');
+    const sourceCurrency = $('#c_from').value;
+    const targetCurrency = $('#c_to').value;
+    const convertedAmount = parseFloat(input) * exchangeRates[targetCurrency] / exchangeRates[sourceCurrency];
+    output.textContent = `${new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 }).format(convertedAmount)} ${targetCurrency}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (!$('#ratesBox')) return;
+    $('#convForm').addEventListener('submit', event => {
+        event.preventDefault();
+        convert();
+    });
+    $('#convForm').addEventListener('input', convert);
+    loadRates();
+});

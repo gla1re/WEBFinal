@@ -1,17 +1,61 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Profile — SmartBank</title>
-<meta name="description" content="SmartBank: demo digital banking website (university project).">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="css/style.css">
-<script src="js/main.js" defer></script>
-<script src="js/auth.js" defer></script>
-</head><body>
-<main>
-<section><div class="wrap" id="profile" hidden><h1 id="welcome" style="font-size:2rem"></h1><p class="lead">Demo data for illustration only.</p>
-<div class="row" style="margin-bottom:20px"><a class="btn btn-primary btn-sm" href="deposits.html">New deposit</a><a class="btn btn-teal btn-sm" href="payments.html">Transfer money</a><a class="btn btn-ghost btn-sm" href="payments.html#pay">Pay bills</a><button class="btn btn-ghost btn-sm" id="editBtn">Edit profile</button><button class="btn btn-ghost btn-sm" id="logoutBtn">Log out</button></div>
-<div class="grid"><div class="card"><span class="muted">Total balance</span><h2 id="pTotal"></h2></div><div class="card"><span class="muted">Main account</span><h2 id="pMain"></h2><small class="muted">KZ00 SMRT 0000 0000 01</small></div><div class="card"><span class="muted">Savings account</span><h2 id="pSav"></h2><small class="muted">KZ00 SMRT 0000 0000 02</small></div></div>
-<div class="grid-2" style="margin-top:20px"><div class="card"><h3>Your details</h3><div class="kv" id="pInfo"></div></div>
-<div class="card"><h3>Deposit summary</h3><p id="pDep" class="muted"></p><a class="btn btn-ghost btn-sm" href="deposits.html">Open calculator</a></div></div>
-<div class="card" style="margin-top:20px"><h3>Recent transactions</h3><div class="tbl"><table><tbody id="pTx"></tbody></table></div></div></div></section>
-</main></body></html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Profile — SmartBank</title>
+    <meta name="description" content="SmartBank: demo digital banking website (university project).">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/auth.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <section>
+            <div class="wrap" id="profile" hidden>
+                <h1 id="welcome" style="font-size:2rem"></h1>
+                <p class="lead">Demo data for illustration only.</p>
+                <div class="row" style="margin-bottom:20px"><a class="btn btn-primary btn-sm" href="deposits.html">New
+                        deposit</a><a class="btn btn-teal btn-sm" href="payments.html">Transfer money</a><a
+                        class="btn btn-ghost btn-sm" href="payments.html#pay">Pay bills</a><button
+                        class="btn btn-ghost btn-sm" id="editBtn">Edit profile</button><button
+                        class="btn btn-ghost btn-sm" id="logoutBtn">Log out</button></div>
+                <div class="grid">
+                    <div class="card"><span class="muted">Total balance</span>
+                        <h2 id="pTotal"></h2>
+                    </div>
+                    <div class="card"><span class="muted">Main account</span>
+                        <h2 id="pMain"></h2><small class="muted">KZ00 SMRT 0000 0000 01</small>
+                    </div>
+                    <div class="card"><span class="muted">Savings account</span>
+                        <h2 id="pSav"></h2><small class="muted">KZ00 SMRT 0000 0000 02</small>
+                    </div>
+                </div>
+                <div class="grid-2" style="margin-top:20px">
+                    <div class="card">
+                        <h3>Your details</h3>
+                        <div class="kv" id="pInfo"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Deposit summary</h3>
+                        <p id="pDep" class="muted"></p><a class="btn btn-ghost btn-sm" href="deposits.html">Open
+                            calculator</a>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:20px">
+                    <h3>Recent transactions</h3>
+                    <div class="tbl">
+                        <table>
+                            <tbody id="pTx"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
