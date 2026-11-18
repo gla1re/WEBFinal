@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deposits — SmartBank</title>
+<meta name="description" content="SmartBank: demo digital banking website (university project).">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+<script src="js/calculator.js" defer></script>
+</head><body>
+<main>
+<section><div class="wrap"><h2>Deposit calculator</h2><p class="lead">Plan your savings. All values are examples, not actual bank offers.</p>
+<div class="grid-2"><form class="card" id="calcForm" novalidate>
+<label>Initial deposit (KZT)<input id="amount" inputmode="decimal" value="1000000"><small class="err" data-for="amount"></small></label>
+<label>Annual interest rate (%)<input id="rate" inputmode="decimal" value="14"><small class="err" data-for="rate"></small></label>
+<label>Term (months)<input id="term" inputmode="numeric" value="12"><small class="err" data-for="term"></small></label>
+<label>Monthly top-up (KZT, optional)<input id="topup" inputmode="decimal" value="50000"><small class="err" data-for="topup"></small></label>
+<label>Interest type<select id="cap"><option value="1">Monthly compounding</option><option value="0">Simple interest</option></select></label>
+<div class="row"><button class="btn btn-primary" type="submit">Calculate</button><button class="btn btn-ghost" type="button" id="resetBtn">Reset</button></div></form>
+<div class="card"><div class="res" id="results"></div><canvas id="chart" height="260" aria-label="Savings growth chart"></canvas><p class="fine" style="color:var(--muted)">Blue: balance. Teal: your own contributions.</p></div></div></div></section>
+<section><div class="wrap"><h2>Compare two scenarios</h2><p class="lead">Try different rates or terms side by side.</p>
+<div class="grid-2"><div class="card"><h3>Scenario A</h3>
+<label>Deposit (KZT)<input id="a_amount" value="1000000"><small class="err" data-for="a_amount"></small></label><label>Rate (%)<input id="a_rate" value="12"><small class="err" data-for="a_rate"></small></label>
+<label>Term (months)<input id="a_term" value="12"><small class="err" data-for="a_term"></small></label><label>Monthly top-up<input id="a_topup" value="0"><small class="err" data-for="a_topup"></small></label>
+<label>Interest type<select id="a_cap"><option value="1">Monthly compounding</option><option value="0">Simple interest</option></select></label></div>
+<div class="card"><h3>Scenario B</h3>
+<label>Deposit (KZT)<input id="b_amount" value="1000000"><small class="err" data-for="b_amount"></small></label><label>Rate (%)<input id="b_rate" value="15"><small class="err" data-for="b_rate"></small></label>
+<label>Term (months)<input id="b_term" value="24"><small class="err" data-for="b_term"></small></label><label>Monthly top-up<input id="b_topup" value="0"><small class="err" data-for="b_topup"></small></label>
+<label>Interest type<select id="b_cap"><option value="1">Monthly compounding</option><option value="0">Simple interest</option></select></label></div></div>
+<div class="row" style="margin-top:16px"><button class="btn btn-primary" id="cmpBtn" type="button">Compare</button></div><div class="card tbl" id="cmpOut" style="margin-top:16px" hidden></div></div></section>
+</main></body></html>

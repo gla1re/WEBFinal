@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Log in or sign up — SmartBank</title>
+<meta name="description" content="SmartBank: demo digital banking website (university project).">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+<script src="js/auth.js" defer></script>
+</head><body>
+<main>
+<section><div class="wrap" style="max-width:520px"><div class="card"><div class="tabs"><button class="chip on" data-tab="login">Log in</button><button class="chip" data-tab="signup">Sign up</button></div>
+<div class="alert bad" id="authMsg" hidden></div>
+<form id="loginForm" novalidate><h2>Welcome back</h2>
+<label>Email<input id="l_email" autocomplete="email"><small class="err" data-for="l_email"></small></label>
+<label>Password<input id="l_pass" type="password" autocomplete="current-password"><small class="err" data-for="l_pass"></small></label>
+<button class="btn btn-primary" type="submit">Log in</button></form>
+<form id="signupForm" novalidate hidden><h2>Create your account</h2>
+<label>Full name<input id="s_name" autocomplete="name"><small class="err" data-for="s_name"></small></label>
+<label>Email<input id="s_email" autocomplete="email"><small class="err" data-for="s_email"></small></label>
+<label>Phone<input id="s_phone" placeholder="+7 777 123 45 67"><small class="err" data-for="s_phone"></small></label>
+<label>Password<input id="s_pass" type="password" autocomplete="new-password"><small class="err" data-for="s_pass"></small></label>
+<label>Confirm password<input id="s_pass2" type="password" autocomplete="new-password"><small class="err" data-for="s_pass2"></small></label>
+<p class="muted" style="font-size:.85rem;margin-bottom:12px">8+ characters, one uppercase letter, one number, one special character.</p>
+<button class="btn btn-primary" type="submit">Create account</button></form>
+<p class="fine" style="color:var(--muted)">Demo only: data is stored in your browser and is not secure. Never enter real banking credentials.</p></div></div></section>
+</main></body></html>

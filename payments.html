@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Payments — SmartBank</title>
+<meta name="description" content="SmartBank: demo digital banking website (university project).">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+<script src="js/api.js" defer></script><script src="js/payments.js" defer></script>
+</head><body>
+<main>
+<section><div class="wrap"><h2>Payments and transfers</h2><p class="lead">Demonstration only. No real money moves.</p>
+<div class="alert bad" id="needLogin" hidden>You are not logged in. <a href="auth.html#login">Log in</a> or <a href="auth.html#signup">sign up</a> to try transfers.</div>
+<div class="grid"><div class="card"><span class="muted">Main account</span><h2 id="balMain">–</h2></div><div class="card"><span class="muted">Savings account</span><h2 id="balSav">–</h2></div></div>
+<div class="grid-2" style="margin-top:20px"><form class="card" id="tForm" novalidate><h3>Send a transfer</h3>
+<label>From<select id="t_from"><option value="balance">Main account</option><option value="savings">Savings account</option></select></label>
+<label>Recipient name<input id="t_name"><small class="err" data-for="t_name"></small></label>
+<label>Account or card number<input id="t_acc" placeholder="KZ + 18 characters or 16-digit card"><small class="err" data-for="t_acc"></small></label>
+<label>Amount (KZT)<input id="t_amt" inputmode="decimal"><small class="err" data-for="t_amt"></small></label>
+<div class="alert" id="t_msg" hidden></div><button class="btn btn-primary">Send money</button></form>
+<div><form class="card" id="oForm" novalidate><h3>Between my accounts</h3>
+<label>Direction<select id="o_dir"><option value="ms">Main to Savings</option><option value="sm">Savings to Main</option></select></label>
+<label>Amount (KZT)<input id="o_amt" inputmode="decimal"><small class="err" data-for="o_amt"></small></label>
+<div class="alert" id="o_msg" hidden></div><button class="btn btn-teal">Move money</button></form></div></div></div></section>
+<section id="pay"><div class="wrap"><form class="card" id="pForm" novalidate><h3>Pay for services</h3>
+<div class="tabs" id="cats"><button type="button" class="chip on" data-cat="Mobile"><i class="fa-solid fa-mobile-screen"></i> Mobile</button><button type="button" class="chip" data-cat="Internet"><i class="fa-solid fa-wifi"></i> Internet</button><button type="button" class="chip" data-cat="Utilities"><i class="fa-solid fa-lightbulb"></i> Utilities</button><button type="button" class="chip" data-cat="Shopping"><i class="fa-solid fa-bag-shopping"></i> Shopping</button></div>
+<div class="grid"><label>Provider<select id="p_prov"></select></label><label>Phone, account or order number<input id="p_ref"><small class="err" data-for="p_ref"></small></label><label>Amount (KZT)<input id="p_amt" inputmode="decimal"><small class="err" data-for="p_amt"></small></label></div>
+<div class="alert" id="p_msg" hidden></div><button class="btn btn-primary">Pay now</button></form></div></section>
+<section id="rates"><div class="wrap"><h2>Exchange rates</h2><p class="lead">Informational only. Source: open.er-api.com.</p>
+<div class="grid-2"><div class="card" id="ratesBox"><span class="spin"></span> Loading rates…</div>
+<form class="card" id="convForm" novalidate><h3>Currency converter</h3><div class="grid"><label>Amount<input id="c_amt" inputmode="decimal" value="100"><small class="err" data-for="c_amt"></small></label><label>From<select id="c_from"></select></label><label>To<select id="c_to"></select></label></div><h2 id="c_out" class="pos">–</h2><p class="fine" style="color:var(--muted)">Rates are not offers. Real bank rates differ.</p></form></div></div></section>
+<section><div class="wrap"><h2>Payment history</h2><div class="card"><div class="filters"><label>Search<input id="q" placeholder="Search by description"></label>
+<label>Category<select id="fcat"><option value="">All</option><option>Transfer</option><option>Own transfer</option><option>Mobile</option><option>Internet</option><option>Utilities</option><option>Shopping</option></select></label>
+<label>Type<select id="ftype"><option value="">All</option><option value="out">Outgoing</option><option value="in">Incoming</option><option value="own">Own accounts</option></select></label></div>
+<div class="tbl"><table><thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Amount</th></tr></thead><tbody id="hist"></tbody></table></div></div></div></section>
+</main></body></html>
