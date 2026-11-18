@@ -86,8 +86,8 @@ function initProfile() {
     $('#pMain').textContent = formatCurrency(user.balance);
     $('#pSav').textContent = formatCurrency(user.savings);
     $('#pInfo').innerHTML = `<span>Name</span><b>${escapeHtml(user.name)}</b><span>Email</span><b>${escapeHtml(user.email)}</b><span>Phone</span><b>${escapeHtml(user.phone)}</b>`;
-    const estimatedInterest = user.savings * (Math.pow(1 + 0.14 / 12, 12) - 1);
-    $('#pDep').textContent = `Savings of ${formatCurrency(user.savings)} could earn about ${formatCurrency(estimatedInterest)} in 12 months at an example rate of 14% with monthly compounding.`;
+    const estimatedInterest = user.savings * (Math.pow(1 + 0.03 / 12, 12) - 1);
+    $('#pDep').textContent = `Savings of ${formatCurrency(user.savings)} could earn about ${formatCurrency(estimatedInterest)} in 12 months at an example rate of 3% with monthly compounding (before fees).`;
     $('#pTx').innerHTML = recentTransactions.length
       ? recentTransactions.map(transaction => `<tr><td>${new Date(transaction.date).toLocaleDateString('en-GB')}</td><td>${escapeHtml(transaction.desc)}</td><td class="${transaction.type === 'in' ? 'pos' : transaction.type === 'out' ? 'neg' : ''}">${transaction.type === 'in' ? '+' : transaction.type === 'out' ? '-' : ''}${formatCurrency(transaction.amount)}</td></tr>`).join('')
       : '<tr><td class="muted">No transactions yet. Make a transfer to see it here.</td></tr>';
